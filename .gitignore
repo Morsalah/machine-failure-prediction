@@ -24,26 +24,35 @@ data/raw/*
 data/interim/*
 data/processed/*
 
-# Keep empty folders in Git
+# Keep empty data directories in Git
 !data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
 
-# Models
+# Trained model artifacts
 models/*
 !models/.gitkeep
 
-# Generated reports
-reports/figures/*
+# Generated metrics
 reports/metrics/*
-
-!reports/figures/.gitkeep
 !reports/metrics/.gitkeep
+
+# Generated figures
+reports/figures/*
+!reports/figures/.gitkeep
+
+# Keep selected portfolio figures
+!reports/figures/model_comparison.png
+!reports/figures/xgboost_final_confusion_matrix_threshold_009.png
+!reports/figures/xgboost_final_roc_curve.png
+!reports/figures/xgboost_final_precision_recall_curve.png
+!reports/figures/random_forest_tuned_shap_summary.png
 
 # Testing and linting
 .pytest_cache/
 .ruff_cache/
 .coverage
+.coverage.*
 htmlcov/
 
 # MLflow
