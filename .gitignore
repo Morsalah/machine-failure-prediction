@@ -32,6 +32,7 @@ data/processed/*
 # Trained model artifacts
 models/*
 !models/.gitkeep
+!models/xgboost_final.joblib
 
 # Generated metrics
 reports/metrics/*
