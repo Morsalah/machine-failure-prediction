@@ -6,6 +6,41 @@ The goal is to identify machines at risk of failure using measurements such as t
 
 A key challenge is the strong class imbalance: machine failures represent only about **1.6%** of the observations. Because of this, the project focuses on metrics such as **Recall, F1, F2, ROC-AUC, and PR-AUC**, rather than relying on accuracy alone.
 
+## Interactive Streamlit Demo
+
+The project now includes an interactive **Streamlit application** for real-time machine failure risk prediction.
+
+Users can enter the current machine operating conditions:
+
+- Air temperature
+- Process temperature
+- Rotational speed
+- Torque
+- Tool wear
+- Machine type
+
+The application uses the trained XGBoost pipeline to display:
+
+- Predicted failure probability
+- The selected decision threshold of **0.09**
+- A maintenance recommendation based on the predicted risk
+- An interactive probability gauge
+- A local **SHAP-based explanation** showing how each feature influenced the prediction
+
+The Streamlit interface provides a practical demonstration of how the trained machine-learning model can be used for individual machine predictions.
+
+### Run the Streamlit App Locally
+
+```bash
+uv run streamlit run app/app.py
+```
+
+### Live Demo
+
+Try the deployed Streamlit application:
+
+[Open the Machine Failure Prediction App](https://machine-failure-prediction-pw5ubvrhxlkgp83da8soin.streamlit.app/)
+
 ## Final Results
 
 The final selected model is **XGBoost** with a decision threshold of **0.09**, selected on the validation set with an emphasis on F2-score and failure detection.
@@ -328,6 +363,9 @@ This supports a key conclusion of the project: **machine failure risk is associa
 ```text
 machine-failure-prediction/
 │
+├── app/
+│   └── app.py
+│
 ├── data/
 │   ├── raw/
 │   │   └── .gitkeep
@@ -337,7 +375,8 @@ machine-failure-prediction/
 │       └── .gitkeep
 │
 ├── models/
-│   └── .gitkeep
+│   ├── .gitkeep
+│   └── xgboost_final.joblib
 │
 ├── notebooks/
 │   └── archive/
@@ -387,7 +426,7 @@ machine-failure-prediction/
 └── uv.lock
 ```
 
-Raw datasets, generated model artifacts, and most generated reports are intentionally excluded from version control.
+Raw datasets, intermediate model artifacts, and most generated reports are intentionally excluded from version control. The final trained XGBoost model used by the Streamlit application is included for inference.
 
 ## Installation
 
@@ -417,6 +456,13 @@ data/raw/train.csv
 ```
 
 ## Usage
+
+### Run the Interactive Streamlit App
+
+```bash
+uv run streamlit run app/app.py
+```
+
 
 ### Exploratory Data Analysis
 
@@ -505,6 +551,8 @@ uv run ruff check src tests
 - Scikit-learn
 - XGBoost
 - SHAP
+- Streamlit
+- Plotly
 - Matplotlib
 - Seaborn
 - Joblib
